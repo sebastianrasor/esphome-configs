@@ -1,0 +1,14 @@
+---
+lambda:
+  name: Adaptive Lighting
+  lambda: |-
+    if(!id(sun_elevation).has_state()) return;
+    static float last_elevation = 90.1;
+    float elevation = id(sun_elevation).state;
+    if (elevation != last_elevation) {
+      last_elevation = elevation;
+      auto call = id(this_light).make_call();
+      call.set_color_temperature(1000000 / (2700 + std::clamp(elevation + 6.0, 0.0, 82.430452) * (3800 / 82.430452)));
+      call.perform();
+    }
+...

@@ -1,0 +1,8 @@
+---
+packages:
+  api: !include base/api.yaml
+  esphome: !include base/esphome.yaml
+  logger: !include base/logger.yaml
+  ota: !include base/ota.yaml
+  wifi: !include base/wifi.yaml
+...

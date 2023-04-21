@@ -1,0 +1,11 @@
+---
+substitutions:
+  friendly_name: Kitchen 3
+  name: kitchen-light-3
+  ip: '10.0.1.6'
+
+packages:
+  base: !include packages/base.yaml
+  devices: !include packages/devices/shelly-duo.yaml
+  components: !include packages/components/cwww-light.yaml
+...

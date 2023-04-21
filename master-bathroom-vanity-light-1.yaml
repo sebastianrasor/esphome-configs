@@ -1,0 +1,11 @@
+---
+substitutions:
+  friendly_name: Master Bathroom Vanity 1
+  name: master-bathroom-vanity-light-1
+  ip: '10.0.1.122'
+
+packages:
+  base: !include packages/base.yaml
+  devices: !include packages/devices/shelly-duo.yaml
+  components: !include packages/components/cwww-light.yaml
+...

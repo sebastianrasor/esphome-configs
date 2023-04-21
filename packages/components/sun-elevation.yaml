@@ -1,0 +1,8 @@
+---
+sensor:
+- platform: homeassistant
+  name: "Sun Elevation"
+  entity_id: sun.sun
+  attribute: elevation
+  id: sun_elevation
+...

@@ -1,0 +1,6 @@
+---
+fan:
+- platform: binary
+  name: $friendly_name
+  output: relay0
+...

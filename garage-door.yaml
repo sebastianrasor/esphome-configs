@@ -1,0 +1,29 @@
+---
+substitutions:
+  friendly_name: Garage Door
+  name: garage-door
+  ip: '10.0.1.52'
+
+packages:
+  base: !include packages/base.yaml
+  devices: !include packages/devices/shelly-1.yaml
+# components:
+
+binary_sensor:
+- id: !extend sensor
+  name: $friendly_name
+  internal: false
+  devices_class: garage_door
+  filters:
+  - delayed_on: 1s # max bounce i've seen is about 800ms
+  - invert:
+
+button:
+- platform: template
+  name: $friendly_name
+  on_press:
+  - then:
+    - output.turn_on: relay
+    - delay: 200ms
+    - output.turn_off: relay
+...

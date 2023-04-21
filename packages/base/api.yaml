@@ -1,0 +1,5 @@
+---
+api:
+  encryption:
+    key: !secret api_encryption_key
+...
