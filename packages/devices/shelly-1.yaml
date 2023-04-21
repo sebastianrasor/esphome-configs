@@ -12,4 +12,5 @@ binary_sensor:
 - platform: gpio
   pin: 5
   id: sensor
+  internal: true
 ...
