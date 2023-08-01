@@ -13,7 +13,7 @@ binary_sensor:
 - id: !extend sensor
   name: $friendly_name
   internal: false
-  devices_class: garage_door
+  device_class: garage_door
   filters:
   - delayed_on: 1s # max bounce i've seen is about 800ms
   - invert:
