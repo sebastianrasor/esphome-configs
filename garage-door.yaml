@@ -23,7 +23,7 @@ button:
   name: $friendly_name
   on_press:
   - then:
-    - output.turn_on: relay
+    - output.turn_on: relay0
     - delay: 200ms
-    - output.turn_off: relay
+    - output.turn_off: relay0
 ...
