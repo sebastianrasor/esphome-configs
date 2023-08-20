@@ -1,0 +1,11 @@
+---
+substitutions:
+  friendly_name: Dining Room Proxy
+  name: dining-room-proxy
+  ip: '10.0.1.70'
+
+packages:
+  base: !include packages/base.yaml
+  device: !include packages/devices/esp32-proxy.yaml
+  component: !include packages/components/proxy.yaml
+...

@@ -1,0 +1,11 @@
+---
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+button:
+  - platform: safe_mode
+    name: Safe Mode Boot
+    entity_category: diagnostic
+...
