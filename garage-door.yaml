@@ -45,22 +45,22 @@ cover:
       - if:
           condition:
             lambda: return id(garage_door).current_operation == COVER_OPERATION_IDLE;
-        then:
-          - cover.template.publish:
-              id: garage_door
-              current_operation: OPENING
-          - output.turn_on: relay0
-          - delay: 200ms
-          - output.turn_off: relay0
-  close_action:
-    - if:
-        condition:
-          lambda: return id(garage_door).current_operation == COVER_OPERATION_IDLE;
-      then:
-        - cover.template.publish:
-            id: garage_door
-            current_operation: CLOSING
-        - output.turn_on: relay0
-        - delay: 200ms
-        - output.turn_off: relay0
+          then:
+            - cover.template.publish:
+                id: garage_door
+                current_operation: OPENING
+            - output.turn_on: relay0
+            - delay: 200ms
+            - output.turn_off: relay0
+    close_action:
+      - if:
+          condition:
+            lambda: return id(garage_door).current_operation == COVER_OPERATION_IDLE;
+          then:
+            - cover.template.publish:
+                id: garage_door
+                current_operation: CLOSING
+            - output.turn_on: relay0
+            - delay: 200ms
+            - output.turn_off: relay0
 ...
