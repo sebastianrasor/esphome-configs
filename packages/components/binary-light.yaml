@@ -1,8 +1,8 @@
 ---
 light:
-- platform: binary
-  name: $friendly_name
-  output: relay0
-  effects:
-  - <<: !include light/strobe.effect.yaml
+  - platform: binary
+    name: $friendly_name
+    output: relay0
+    effects:
+      - <<: !include light/strobe.effect.yaml
 ...
