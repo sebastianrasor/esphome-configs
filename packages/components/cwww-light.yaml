@@ -1,18 +1,13 @@
 ---
-packages:
-  sun_elevation: !include sun-elevation.yaml # required by adaptive-lighting.effect.yaml
-
 light:
   - platform: cwww
     name: $friendly_name
     id: this_light
-    gamma_correct: 1.7
     warm_white: warm_white
     cold_white: cold_white
     cold_white_color_temperature: 6500 K
     warm_white_color_temperature: 2700 K
-    default_transition_length: 0s
+    default_transition_length: 500ms
     effects:
-      - <<: !include light/adaptive-lighting.effect.yaml
       - <<: !include light/strobe.effect.yaml
 ...
