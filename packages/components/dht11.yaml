@@ -1,0 +1,11 @@
+---
+sensor:
+  - platform: dht
+    model: DHT11
+    pin: $dht11_pin
+    temperature:
+      name: "${friendly_name} Temperature"
+    humidity:
+      name: "${friendly_name} Humidity"
+    update_interval: 2s
+...

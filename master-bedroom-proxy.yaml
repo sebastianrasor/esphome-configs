@@ -1,8 +1,8 @@
 ---
 substitutions:
-  friendly_name: Living Room Proxy
-  name: living-room-proxy
-  ip: '10.0.1.189'
+  friendly_name: Master Bedroom Proxy
+  name: master-bedroom-proxy
+  ip: '10.0.1.70'
   dht11_pin: GPIO13
 
 packages:
