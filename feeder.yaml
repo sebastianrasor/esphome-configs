@@ -1,0 +1,46 @@
+---
+substitutions:
+  friendly_name: Feeder
+  name: feeder
+  ip: '10.0.1.245'
+
+packages:
+  base: !include packages/base.yaml
+  device: !include packages/devices/shelly-1.yaml
+
+button:
+  - platform: template
+    name: $friendly_name
+    id: feeder
+    icon: "mdi:paw"
+    on_press:
+      then:
+        - output.turn_on: relay0
+        - delay: 60s
+        - output.turn_off: relay0
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+    on_time:
+      - seconds: 0
+        minutes: 30
+        hours: 6
+        then:
+          - button.press: feeder
+      - seconds: 0
+        minutes: 0
+        hours: 11
+        then:
+          - button.press: feeder
+      - seconds: 0
+        minutes: 30
+        hours: 15
+        then:
+          - button.press: feeder
+      - seconds: 0
+        minutes: 0
+        hours: 20
+        then:
+          - button.press: feeder
+...
