@@ -4,6 +4,7 @@ sensor:
     model: DHT11
     pin: $dht11_pin
     temperature:
+      id: dht11_temperature
       name: "${friendly_name} Temperature"
     humidity:
       name: "${friendly_name} Humidity"

@@ -40,20 +40,23 @@ switch:
     inverted: true
     id: fan
 
-# to-do: default to an on-board temperature sensor if Home Assistant is offline
 sensor:
   - platform: homeassistant
     internal: true
-    id: temperature
+    id: ha_temperature
     entity_id: sensor.temperature
+  - platform: template
+    internal: true
+    id: temperature
+    update_interval: 1s
+    lambda: |-
+      if (global_api_server->is_connected()) {
+        return id(ha_temperature).state;
+      } else {
+        return id(dht11_temperature).state;
+      }
     filters:
       - lambda: return (x - 32.0) * (5.0/9.0);
-
-globals:
-  - id: fan_mode_on 
-    type: bool
-    restore_value: no
-    initial_value: 'false'
 
 climate:
   - platform: thermostat
@@ -93,19 +96,13 @@ climate:
       - switch.turn_off: heat_pump
       - if:
           condition:
-            lambda: 'return !id(fan_mode_on);'
+            lambda: "return id(thermo).fan_mode == climate::CLIMATE_FAN_ON;"
           then:
             switch.turn_off: fan
       - switch.turn_off: fan
     fan_mode_on_action:
       - switch.turn_on: fan
-      - globals.set:
-          id: fan_mode_on
-          value: 'true'
     fan_mode_auto_action:
-      - globals.set:
-          id: fan_mode_on
-          value: 'false'
       - if:
           condition:
             or:
@@ -114,6 +111,7 @@ climate:
           then:
             - switch.turn_off: fan
     default_preset: Home
+    on_boot_restore_from: default_preset
     preset:
       - name: Home
         default_target_temperature_low: 68 °F
