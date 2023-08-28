@@ -96,10 +96,9 @@ climate:
       - switch.turn_off: heat_pump
       - if:
           condition:
-            lambda: "return id(thermo).fan_mode == climate::CLIMATE_FAN_ON;"
+            lambda: "return id(thermo).fan_mode != climate::CLIMATE_FAN_ON;"
           then:
-            switch.turn_off: fan
-      - switch.turn_off: fan
+            - switch.turn_off: fan
     fan_mode_on_action:
       - switch.turn_on: fan
     fan_mode_auto_action:
