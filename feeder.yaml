@@ -9,15 +9,12 @@ packages:
   device: !include packages/devices/shelly-1.yaml
 
 button:
-  - platform: template
+  - platform: output
     name: $friendly_name
     id: feeder
     icon: "mdi:paw"
-    on_press:
-      then:
-        - output.turn_on: relay0
-        - delay: 60s
-        - output.turn_off: relay0
+    output: relay0
+    duration: 30s
 
 time:
   - platform: homeassistant
