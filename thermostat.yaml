@@ -45,18 +45,24 @@ sensor:
     internal: true
     id: ha_temperature
     entity_id: sensor.temperature
+  - platform: homeassistant
+    internal: true
+    id: ha_master_bedroom_temperature
+    entity_id: sensor.master_bedroom_temperature
   - platform: template
     internal: true
     id: temperature
     update_interval: 1s
     lambda: |-
       if (global_api_server->is_connected()) {
-        return id(ha_temperature).state;
+        if (id(thermo).preset == climate::CLIMATE_PRESET_SLEEP) {
+          return (id(ha_master_bedroom_temperature).state - 32.0) * (5.0 / 9.0);
+        } else {
+          return (id(ha_temperature).state - 32.0) * (5.0 / 9.0);
+        }
       } else {
         return id(dht11_temperature).state;
       }
-    filters:
-      - lambda: return (x - 32.0) * (5.0/9.0);
 
 climate:
   - platform: thermostat
