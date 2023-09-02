@@ -1,6 +1,8 @@
 ---
 esp32:
-  board: esp32dev
-  framework:
-    type: esp-idf
+  board: esp32doit-devkit-v1
+
+status_led:
+  pin:
+    number: GPIO2
 ...
