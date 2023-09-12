@@ -71,12 +71,15 @@ climate:
     visual:
       min_temperature: 55 °F
       max_temperature: 85 °F
+      temperature_step:
+        target_temperature: 0.5
+        current_temperature: 0.1
     sensor: temperature
-    cool_overrun: 34 °F # 2 °F
-    cool_deadband: 0
-    heat_overrun: 34 °F # 2 °F
-    heat_deadband: 0
-    set_point_minimum_differential: 34 °F # 2 °F
+    cool_overrun: 2 °F
+    cool_deadband: 0 °F
+    heat_overrun: 2 °F
+    heat_deadband: 0 °F
+    set_point_minimum_differential: 2 °F
     startup_delay: true
     min_idle_time: 300s
     min_cooling_off_time: 300s
@@ -86,7 +89,7 @@ climate:
     max_heating_run_time: 1200s
     # air handler always runs 45s after last signal received
     min_fan_mode_switching_time: 0s 
-    supplemental_heating_delta: 38 °F # 6 °F
+    supplemental_heating_delta: 6 °F
     cool_action:
       - switch.turn_on: reversing_valve
       - switch.turn_on: heat_pump
