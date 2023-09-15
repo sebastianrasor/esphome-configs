@@ -1,11 +1,14 @@
 ---
 substitutions:
-  friendly_name: Dining Room
+  friendly_name: Dining Room Fan
   name: dining-room-fan
   ip: '10.0.1.97'
 
 packages:
   base: !include packages/base.yaml
   device: !include packages/devices/shelly-1.yaml
-  component: !include packages/components/binary-fan.yaml
+  component: !include
+    file: packages/components/binary-fan.yaml
+    vars:
+      output: output0
 ...

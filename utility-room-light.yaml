@@ -1,11 +1,14 @@
 ---
 substitutions:
-  friendly_name: Utility Room
+  friendly_name: Utility Room Light
   name: utility-room-light
   ip: '10.0.1.149'
 
 packages:
   base: !include packages/base.yaml
   device: !include packages/devices/shelly-1.yaml
-  component: !include packages/components/binary-light.yaml
+  component: !include
+    file: packages/components/binary-light.yaml
+    vars:
+      output: output0
 ...

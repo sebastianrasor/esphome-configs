@@ -1,0 +1,68 @@
+# Expects binary output `output` and binary sensor `switch`
+---
+esphome:
+  on_boot:
+    priority: 800
+    then:
+      - cover.template.publish:
+          id: garage_door
+          current_operation: IDLE
+          state: !lambda 'return id(switch_replace_me_when_fixed).state ? COVER_OPEN : COVER_CLOSED;'
+
+binary_sensor:
+# This seems to be behavior which was *supposed* to work, however currently
+# it does not. Until this is fixed, we'll have to create a new binary sensor.
+# - id: !extend $switch
+  - platform: template
+    id: switch_replace_me_when_fixed
+    internal: true
+    lambda: 'return id($switch).state;'
+    filters:
+      - delayed_on: 1s # max bounce i've seen is about 800ms
+      - delayed_off: 12s
+      - invert:
+    on_press:
+      - cover.template.publish:
+          id: garage_door
+          current_operation: IDLE
+          state: OPEN
+    on_release:
+      - cover.template.publish:
+          id: garage_door
+          current_operation: IDLE
+          state: CLOSED
+
+cover:
+  - platform: template
+    # Name is set in packages/base/esphome.yaml
+    # https://esphome.io/components/esphome#esphome-configuration-variables
+    name: None
+    device_class: garage
+    id: garage_door
+    open_action:
+      - if:
+          condition:
+            and:
+              - lambda: 'return !id(switch_replace_me_when_fixed).state;'
+              - lambda: 'return id(garage_door).current_operation == COVER_OPERATION_IDLE;'
+          then:
+            - cover.template.publish:
+                id: garage_door
+                current_operation: OPENING
+            - output.turn_on: $output
+            - delay: 200ms
+            - output.turn_off: $output
+    close_action:
+      - if:
+          condition:
+            and:
+              - lambda: 'return id(switch_replace_me_when_fixed).state;'
+              - lambda: 'return id(garage_door).current_operation == COVER_OPERATION_IDLE;'
+          then:
+            - cover.template.publish:
+                id: garage_door
+                current_operation: CLOSING
+            - output.turn_on: $output
+            - delay: 200ms
+            - output.turn_off: $output
+...

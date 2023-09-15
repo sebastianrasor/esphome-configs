@@ -1,11 +1,15 @@
 ---
 substitutions:
-  friendly_name: Dining Room 1
+  friendly_name: Dining Room Light 1
   name: dining-room-light-1
   ip: '10.0.1.233'
 
 packages:
   base: !include packages/base.yaml
   device: !include packages/devices/shelly-duo.yaml
-  component: !include packages/components/cwww-light.yaml
+  component: !include
+    file: packages/components/cwww-light.yaml
+    vars:
+      cold_white: cold_white
+      warm_white: warm_white
 ...

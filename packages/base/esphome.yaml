@@ -1,4 +1,9 @@
 ---
 esphome:
   name: $name
+  friendly_name: $friendly_name
+  project:
+    name: sebastianrasor.esphome-configs
+    version: 9/14/2023
+  min_version: 2023.8.3
 ...

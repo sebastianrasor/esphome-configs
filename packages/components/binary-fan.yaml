@@ -1,6 +1,9 @@
+# Expects binary output `output`
 ---
 fan:
   - platform: binary
-    name: $friendly_name
-    output: relay0
+    # Name is set in packages/base/esphome.yaml
+    # https://esphome.io/components/esphome#esphome-configuration-variables
+    name: None
+    output: $output
 ...

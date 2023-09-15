@@ -1,11 +1,14 @@
 ---
 substitutions:
-  friendly_name: Master Bathroom
+  friendly_name: Master Bathroom Light
   name: master-bathroom-light
   ip: '10.0.1.147'
 
 packages:
   base: !include packages/base.yaml
   device: !include packages/devices/shelly-1.yaml
-  component: !include packages/components/binary-light.yaml
+  component: !include
+    file: packages/components/binary-light.yaml
+    vars:
+      output: output0
 ...

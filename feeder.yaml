@@ -1,63 +1,14 @@
 ---
 substitutions:
-  friendly_name: Feeder
   name: feeder
+  friendly_name: Feeder
   ip: '10.0.1.245'
 
 packages:
   base: !include packages/base.yaml
   device: !include packages/devices/shelly-1.yaml
-
-button:
-  - platform: output
-    name: $friendly_name
-    id: feeder
-    icon: "mdi:paw"
-    output: relay0
-    duration: 20s
-  - platform: template
-    id: internal_button
-    internal: true
-    on_press:
-      # make button timestamp update when connected to HA
-      - if:
-          condition:
-            api.connected:
-          then:
-            - homeassistant.service:
-                service: button.press
-                data:
-                  entity_id: button.feeder
-          else:
-            - button.press: feeder
-
-time:
-  - platform: homeassistant
-    id: homeassistant_time
-    on_time:
-      - seconds: 0
-        minutes: 30
-        hours: 6
-        then:
-          - button.press: internal_button
-      - seconds: 0
-        minutes: 0
-        hours: 10
-        then:
-          - button.press: internal_button
-      - seconds: 0
-        minutes: 30
-        hours: 13
-        then:
-          - button.press: internal_button
-      - seconds: 0
-        minutes: 0
-        hours: 17
-        then:
-          - button.press: internal_button
-      - seconds: 0
-        minutes: 30
-        hours: 20
-        then:
-          - button.press: internal_button
+  component: !include
+    file: packages/components/feeder.yaml
+    vars:
+      output: output0
 ...

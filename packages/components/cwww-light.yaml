@@ -1,13 +1,25 @@
+# Expects float output variables `cold_white` and `warm_white`
 ---
 light:
   - platform: cwww
-    name: $friendly_name
-    id: this_light
-    warm_white: warm_white
-    cold_white: cold_white
+    # Name is set in packages/base/esphome.yaml
+    # https://esphome.io/components/esphome#esphome-configuration-variables
+    name: None
+    cold_white: $cold_white
+    warm_white: $warm_white
     cold_white_color_temperature: 6500 K
     warm_white_color_temperature: 2700 K
-    default_transition_length: 500ms
+    restore_mode: ALWAYS_ON
+    default_transition_length: 200ms
     effects:
-      - <<: !include light/strobe.effect.yaml
+      - strobe:
+          colors:
+            - state: true
+              duration: 300ms
+              brightness: 100%
+              color_temperature: 3815 K
+            - state: true
+              duration: 200ms
+              brightness: 25%
+              color_temperature: 3815 K
 ...

@@ -1,16 +1,16 @@
+# Provides binary output `output0` and binary sensor `switch0`
 ---
 esp8266:
   board: esp01_1m
-  restore_from_flash: true
 
 output:
   - platform: gpio
     pin: GPIO4
-    id: relay0
+    id: output0
 
 binary_sensor:
   - platform: gpio
-    pin: 5
-    id: sensor
+    pin: GPIO5
+    id: switch0
     internal: true
 ...

@@ -3,11 +3,13 @@ substitutions:
   friendly_name: Living Room Proxy
   name: living-room-proxy
   ip: '10.0.1.189'
-  dht11_pin: GPIO13
 
 packages:
   base: !include packages/base.yaml
   device: !include packages/devices/esp32.yaml
   component0: !include packages/components/proxy.yaml
-  component1: !include packages/components/dht11.yaml
+  component1: !include
+    file: packages/components/dht11.yaml
+    vars:
+      dht11_pin: GPIO13
 ...

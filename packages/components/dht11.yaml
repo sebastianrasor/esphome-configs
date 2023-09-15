@@ -1,3 +1,6 @@
+# Expects pin `dht11_pin`
+# Provides temperature sensor `dht11_temperature`
+# and provides humidity sensor `dht11_humidity`
 ---
 sensor:
   - platform: dht
@@ -7,6 +10,7 @@ sensor:
       id: dht11_temperature
       name: "${friendly_name} Temperature"
     humidity:
+      id: dht11_humidity
       name: "${friendly_name} Humidity"
     update_interval: 2s
 ...

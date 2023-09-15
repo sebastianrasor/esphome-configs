@@ -7,62 +7,9 @@ substitutions:
 packages:
   base: !include packages/base.yaml
   device: !include packages/devices/shelly-1.yaml
-
-esphome:
-  on_boot:
-    priority: 800
-    then:
-      - cover.template.publish:
-          id: garage_door
-          current_operation: IDLE
-          state: !lambda 'return id(sensor).state ? COVER_OPEN : COVER_CLOSED;'
-
-binary_sensor:
-  - id: !extend sensor
-    filters:
-      - delayed_on: 1s # max bounce i've seen is about 800ms
-      - delayed_off: 12s
-      - invert:
-    on_press:
-      - cover.template.publish:
-          id: garage_door
-          current_operation: IDLE
-          state: OPEN
-    on_release:
-      - cover.template.publish:
-          id: garage_door
-          current_operation: IDLE
-          state: CLOSED
-
-cover:
-  - platform: template
-    name: $friendly_name
-    device_class: garage
-    id: garage_door
-    open_action:
-      - if:
-          condition:
-            and:
-              - lambda: 'return !id(sensor).state;'
-              - lambda: 'return id(garage_door).current_operation == COVER_OPERATION_IDLE;'
-          then:
-            - cover.template.publish:
-                id: garage_door
-                current_operation: OPENING
-            - output.turn_on: relay0
-            - delay: 200ms
-            - output.turn_off: relay0
-    close_action:
-      - if:
-          condition:
-            and:
-              - lambda: 'return id(sensor).state;'
-              - lambda: 'return id(garage_door).current_operation == COVER_OPERATION_IDLE;'
-          then:
-            - cover.template.publish:
-                id: garage_door
-                current_operation: CLOSING
-            - output.turn_on: relay0
-            - delay: 200ms
-            - output.turn_off: relay0
+  component: !include
+    file: packages/components/garage-door.yaml
+    vars:
+      output: output0
+      switch: switch0
 ...

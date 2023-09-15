@@ -1,11 +1,15 @@
 ---
 substitutions:
-  friendly_name: Front Porch
+  friendly_name: Front Porch Light
   name: front-porch-light
   ip: '10.0.1.139'
 
 packages:
   base: !include packages/base.yaml
   device: !include packages/devices/shelly-duo.yaml
-  component: !include packages/components/cwww-light.yaml
+  component: !include
+    file: packages/components/cwww-light.yaml
+    vars:
+      cold_white: cold_white
+      warm_white: warm_white
 ...

@@ -1,0 +1,127 @@
+---
+switch:
+  - platform: gpio
+    pin: $orange
+    internal: true
+    restore_mode: ALWAYS_OFF
+    inverted: true
+    id: reversing_valve
+  - platform: gpio
+    pin: $white
+    internal: true
+    restore_mode: ALWAYS_OFF
+    inverted: true
+    id: aux_heat
+  - platform: gpio
+    pin: $green
+    internal: true
+    restore_mode: ALWAYS_OFF
+    inverted: true
+    id: fan
+  - platform: gpio
+    pin: $yellow
+    internal: true
+    restore_mode: ALWAYS_OFF
+    inverted: true
+    id: heat_pump
+
+sensor:
+  - platform: homeassistant
+    internal: true
+    id: ha_temperature
+    entity_id: sensor.temperature
+  - platform: homeassistant
+    internal: true
+    id: ha_master_bedroom_temperature
+    entity_id: sensor.master_bedroom_temperature
+  - platform: template
+    internal: true
+    id: temperature
+    update_interval: 1s
+    lambda: |-
+      if (global_api_server->is_connected()) {
+        if (id(thermo).preset == climate::CLIMATE_PRESET_SLEEP) {
+          return (id(ha_master_bedroom_temperature).state - 32.0) * (5.0 / 9.0);
+        } else {
+          return (id(ha_temperature).state - 32.0) * (5.0 / 9.0);
+        }
+      } else {
+        return id(dht11_temperature).state;
+      }
+
+climate:
+  - platform: thermostat
+    # Name is set in packages/base/esphome.yaml
+    # https://esphome.io/components/esphome#esphome-configuration-variables
+    name: None
+    id: thermo
+    visual:
+      min_temperature: 55 °F
+      max_temperature: 85 °F
+      temperature_step:
+        target_temperature: 0.5
+        current_temperature: 0.1
+    sensor: temperature
+    cool_overrun: 2 °F
+    cool_deadband: 0 °F
+    heat_overrun: 2 °F
+    heat_deadband: 0 °F
+    set_point_minimum_differential: 2 °F
+    startup_delay: true
+    min_idle_time: 300s
+    min_cooling_off_time: 300s
+    min_cooling_run_time: 300s
+    min_heating_off_time: 300s
+    min_heating_run_time: 300s
+    max_heating_run_time: 1200s
+    # air handler always runs 45s after last signal received
+    min_fan_mode_switching_time: 0s 
+    supplemental_heating_delta: 6 °F
+    cool_action:
+      - switch.turn_on: reversing_valve
+      - switch.turn_on: heat_pump
+      - switch.turn_on: fan
+    heat_action:
+      - switch.turn_off: reversing_valve
+      - switch.turn_on: heat_pump
+      - switch.turn_on: fan
+    supplemental_heating_action:
+      - switch.turn_on: aux_heat
+    idle_action:
+      - switch.turn_off: aux_heat
+      - switch.turn_off: heat_pump
+      - if:
+          condition:
+            lambda: "return id(thermo).fan_mode != climate::CLIMATE_FAN_ON;"
+          then:
+            - switch.turn_off: fan
+    fan_mode_on_action:
+      - switch.turn_on: fan
+    fan_mode_auto_action:
+      - if:
+          condition:
+            or:
+              - lambda: 'return id(thermo).action == climate::CLIMATE_ACTION_IDLE;'
+              - lambda: 'return id(thermo).action == climate::CLIMATE_ACTION_OFF;'
+          then:
+            - switch.turn_off: fan
+    default_preset: Home
+    on_boot_restore_from: default_preset
+    preset:
+      - name: Home
+        default_target_temperature_low: 68 °F
+        default_target_temperature_high: 72 °F
+        fan_mode: AUTO
+      - name: Sleep
+        default_target_temperature_low: 63 °F
+        default_target_temperature_high: 67 °F
+        fan_mode: AUTO
+      - name: Away
+        default_target_temperature_low: 65 °F
+        default_target_temperature_high: 75 °F
+        fan_mode: AUTO
+      - name: Vacation
+        default_target_temperature_low: 55 °F
+        default_target_temperature_high: 85 °F
+        fan_mode: AUTO
+...

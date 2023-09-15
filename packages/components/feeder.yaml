@@ -1,0 +1,57 @@
+# Expects binary output `output`
+---
+button:
+  - platform: output
+    # Name is set in packages/base/esphome.yaml
+    # https://esphome.io/components/esphome#esphome-configuration-variables
+    name: None
+    id: feeder
+    icon: "mdi:paw"
+    output: $output
+    duration: 20s
+  - platform: template
+    id: internal_button
+    internal: true
+    on_press:
+      # make button timestamp update when connected to HA
+      - if:
+          condition:
+            api.connected:
+          then:
+            - homeassistant.service:
+                service: button.press
+                data:
+                  entity_id: button.feeder
+          else:
+            - button.press: feeder
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+    on_time:
+      - seconds: 0
+        minutes: 30
+        hours: 6
+        then:
+          - button.press: internal_button
+      - seconds: 0
+        minutes: 0
+        hours: 10
+        then:
+          - button.press: internal_button
+      - seconds: 0
+        minutes: 30
+        hours: 13
+        then:
+          - button.press: internal_button
+      - seconds: 0
+        minutes: 0
+        hours: 17
+        then:
+          - button.press: internal_button
+      - seconds: 0
+        minutes: 30
+        hours: 20
+        then:
+          - button.press: internal_button
+...
