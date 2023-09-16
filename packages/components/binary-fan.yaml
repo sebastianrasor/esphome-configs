@@ -1,4 +1,4 @@
-# Expects binary output `output`
+# Expects binary output `$output`
 ---
 fan:
   - platform: binary

@@ -1,10 +1,12 @@
 # Expects binary output `output`
+# Provides binary light `binary_light`
 ---
 light:
   - platform: binary
     # Name is set in packages/base/esphome.yaml
     # https://esphome.io/components/esphome#esphome-configuration-variables
     name: None
+    id: binary_light
     output: $output
     restore_mode: ALWAYS_ON
     effects:
