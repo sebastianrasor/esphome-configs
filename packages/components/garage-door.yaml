@@ -1,4 +1,4 @@
-# Expects binary output `output` and binary sensor `switch`
+# Expects binary output `$output` and binary sensor `$switch`
 ---
 esphome:
   on_boot:

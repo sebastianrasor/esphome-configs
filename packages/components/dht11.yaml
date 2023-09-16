@@ -1,4 +1,4 @@
-# Expects pin `dht11_pin`
+# Expects pin `$dht11_pin`
 # Provides temperature sensor `dht11_temperature`
 # and provides humidity sensor `dht11_humidity`
 ---

@@ -1,4 +1,4 @@
-# Expects action `action`, target `target`,  and binary sensor `switch`
+# Expects action `$action`, target `$target`,  and binary sensor `$switch`
 ---
 binary_sensor:
 # This seems to be behavior which was *supposed* to work, however currently

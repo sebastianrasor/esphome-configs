@@ -1,4 +1,4 @@
-# Expects float output variables `cold_white` and `warm_white`
+# Expects float outputs `$cold_white` and `$warm_white`
 ---
 light:
   - platform: cwww
