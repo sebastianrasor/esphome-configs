@@ -35,23 +35,28 @@ time:
         then:
           - button.press: internal_button
       - seconds: 0
-        minutes: 0
-        hours: 10
+        minutes: 30
+        hours: 9
         then:
           - button.press: internal_button
       - seconds: 0
         minutes: 30
-        hours: 13
-        then:
-          - button.press: internal_button
-      - seconds: 0
-        minutes: 0
-        hours: 17
+        hours: 12
         then:
           - button.press: internal_button
       - seconds: 0
         minutes: 30
-        hours: 20
+        hours: 15
+        then:
+          - button.press: internal_button
+      - seconds: 0
+        minutes: 30
+        hours: 18
+        then:
+          - button.press: internal_button
+      - seconds: 0
+        minutes: 30
+        hours: 21
         then:
           - button.press: internal_button
 ...
