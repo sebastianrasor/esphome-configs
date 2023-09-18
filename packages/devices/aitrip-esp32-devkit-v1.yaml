@@ -1,6 +1,9 @@
 # Does not currently provide components to be used elsewhere
 # Use GPIO pins in component packages
 ---
+substitutions:
+  device_name: Aitrip ESP32 DevKit V1
+
 esp32:
   board: esp32doit-devkit-v1
   framework:

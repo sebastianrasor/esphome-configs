@@ -4,6 +4,12 @@ esphome:
   friendly_name: $friendly_name
   project:
     name: sebastianrasor.esphome-configs
-    version: 9/16/2023
+    # I'd put the date of commit or some SemVar thing here, but that's just not
+    # very useful because the native API already provides information on when
+    # ESPHome was compiled. The most logical and useful thing to do here would
+    # be to describe the device *and* each of the components but I'm not sure
+    # it's possible to combine substitutions as a single string in that way.
+    # For now, simply providing the name of the device is enough.
+    version: $device_name
   min_version: 2023.8.3
 ...

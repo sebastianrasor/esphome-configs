@@ -1,5 +1,8 @@
 # Provides binary output `output0` and binary sensor `switch0`
 ---
+substitutions:
+  device_name: Shelly 1
+
 esp8266:
   board: esp01_1m
 
