@@ -11,6 +11,7 @@ light:
     warm_white_color_temperature: 2700 K
     restore_mode: ALWAYS_ON
     default_transition_length: 200ms
+    flash_transition_length: 200ms
     effects:
       - strobe:
           colors:
