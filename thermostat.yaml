@@ -3,7 +3,6 @@ substitutions:
   friendly_name: Thermostat
   name: thermostat
   ip: '10.0.1.169'
-  dht11_pin: GPIO13
 
 packages:
   base: !include packages/base.yaml
