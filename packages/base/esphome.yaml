@@ -2,6 +2,7 @@
 esphome:
   name: $name
   friendly_name: $friendly_name
+  comment: $device_name
   project:
     name: sebastianrasor.esphome-configs
     # I'd put the date of commit or some SemVar thing here, but that's just not
