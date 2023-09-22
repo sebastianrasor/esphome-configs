@@ -1,7 +1,10 @@
 # Provides float outputs `red`, `green`, `blue`, `cold_white`, and `warm_white`
+# Provides substitutions `$cw_temp` and `$ww_temp`
 ---
 substitutions:
   device_name: Kauf A15 RGBWW Bulb
+  cw_temp: 6500 K
+  ww_temp: 2700 K
 
 esp8266:
   board: esp01_1m

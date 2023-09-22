@@ -1,4 +1,5 @@
 # Expects float outputs `$cold_white` and `$warm_white`
+# Expects color temperatures `$cw_temp` and `$ww_temp`
 ---
 light:
   - platform: cwww
@@ -7,8 +8,8 @@ light:
     name: None
     cold_white: $cold_white
     warm_white: $warm_white
-    cold_white_color_temperature: 6500 K
-    warm_white_color_temperature: 2700 K
+    cold_white_color_temperature: $cw_temp
+    warm_white_color_temperature: $ww_temp
     restore_mode: ALWAYS_ON
     default_transition_length: 200ms
     flash_transition_length: 200ms
