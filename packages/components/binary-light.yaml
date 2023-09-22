@@ -9,11 +9,4 @@ light:
     id: binary_light
     output: $output
     restore_mode: ALWAYS_ON
-    effects:
-      - strobe:
-          colors:
-            - state: true
-              duration: 300ms
-            - state: false
-              duration: 200ms
 ...

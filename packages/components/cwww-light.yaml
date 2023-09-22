@@ -13,15 +13,4 @@ light:
     restore_mode: ALWAYS_ON
     default_transition_length: 200ms
     flash_transition_length: 200ms
-    effects:
-      - strobe:
-          colors:
-            - state: true
-              duration: 300ms
-              brightness: 100%
-              color_temperature: 3815 K
-            - state: true
-              duration: 200ms
-              brightness: 25%
-              color_temperature: 3815 K
 ...
