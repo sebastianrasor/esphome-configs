@@ -1,0 +1,19 @@
+# Provides binary output `output0` and binary sensor `switch0`
+---
+substitutions:
+  device_name: Shelly Plus 1 Mini
+
+esp32:
+  board: esp32-c3-devkitm-1
+
+output:
+  - platform: gpio
+    pin: GPIO7
+    id: output0
+
+binary_sensor:
+  - platform: gpio
+    pin: GPIO10
+    id: switch0
+    internal: true
+...

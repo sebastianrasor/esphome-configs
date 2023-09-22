@@ -1,0 +1,19 @@
+# Provides binary output `output0` and binary sensor `button0`
+---
+substitutions:
+  device_name: CloudFree Switch
+
+esp32:
+  board: esp32-c3-devkitm-1
+
+output:
+  - platform: gpio
+    pin: GPIO12
+    id: output0
+
+binary_sensor:
+  - platform: gpio
+    pin: GPIO0
+    id: button0
+    internal: true
+...

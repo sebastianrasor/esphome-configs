@@ -1,0 +1,30 @@
+# Provides binary output `output0` and binary sensors `button0`, `motion0`, and
+# `lux0`
+---
+substitutions:
+  device_name: CloudFree Motion Switch
+
+esp8266:
+  board: esp01_1m
+
+output:
+  - platform: gpio
+    pin: GPIO12
+    id: output0
+
+binary_sensor:
+  - platform: gpio
+    pin: GPIO0
+    id: button0
+    internal: true
+  - platform: gpio
+    pin: GPIO5
+    id: motion0
+    device_class: motion
+    internal: true
+  - platform: gpio
+    pin: GPIO14
+    id: lux0
+    device_class: light
+    internal: true
+...

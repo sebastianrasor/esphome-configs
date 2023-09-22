@@ -1,0 +1,27 @@
+# Provides RGB LED `led0`, remote transmitter hub, and binary sensor `button0`
+---
+substitutions:
+  device_name: ATOM Lite
+
+esp32:
+  board: m5stack-atom
+
+light:
+  - platform: fastled_clockless
+    chipset: SK6812
+    pin: GPIO27
+    num_leds: 1
+    rgb_order: GRB
+    id: led0
+    internal: true
+
+remote_transmitter:
+  pin: GPIO12
+  carrier_duty_percent: 50%
+
+binary_sensor:
+  - platform: gpio
+    pin: GPIO39
+    id: button0
+    internal: true
+...
