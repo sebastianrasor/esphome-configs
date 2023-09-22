@@ -10,6 +10,6 @@ packages:
   component: !include
     file: packages/components/garage-door.yaml
     vars:
-      output: output0
+      output: relay0
       switch: switch0
 ...

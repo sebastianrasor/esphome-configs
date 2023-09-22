@@ -10,5 +10,5 @@ packages:
   component: !include
     file: packages/components/binary-light.yaml
     vars:
-      output: output0
+      output: relay0
 ...

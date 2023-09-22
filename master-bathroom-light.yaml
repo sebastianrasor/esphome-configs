@@ -10,7 +10,7 @@ packages:
   component0: !include
     file: packages/components/binary-light.yaml
     vars:
-      output: output0
+      output: relay0
   component1: !include
     file: packages/components/switch-button.yaml
     vars:

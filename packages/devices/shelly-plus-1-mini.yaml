@@ -1,4 +1,4 @@
-# Provides binary output `output0` and binary sensor `switch0`
+# Provides binary output `relay0` and binary sensor `switch0`
 ---
 substitutions:
   device_name: Shelly Plus 1 Mini
@@ -9,7 +9,7 @@ esp32:
 output:
   - platform: gpio
     pin: GPIO7
-    id: output0
+    id: relay0
 
 binary_sensor:
   - platform: gpio

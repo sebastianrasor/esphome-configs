@@ -1,4 +1,4 @@
-# Provides binary output `output0` and binary sensor `button0`
+# Provides binary output `relay0` and binary sensor `button0`
 ---
 substitutions:
   device_name: CloudFree Switch
@@ -9,7 +9,7 @@ esp32:
 output:
   - platform: gpio
     pin: GPIO12
-    id: output0
+    id: relay0
 
 binary_sensor:
   - platform: gpio

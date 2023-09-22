@@ -1,4 +1,4 @@
-# Provides binary output `output0` and binary sensors `button0`, `motion0`, and
+# Provides binary output `relay0` and binary sensors `button0`, `motion0`, and
 # `lux0`
 ---
 substitutions:
@@ -10,7 +10,7 @@ esp8266:
 output:
   - platform: gpio
     pin: GPIO12
-    id: output0
+    id: relay0
 
 binary_sensor:
   - platform: gpio
