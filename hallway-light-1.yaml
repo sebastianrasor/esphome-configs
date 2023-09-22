@@ -6,10 +6,13 @@ substitutions:
 
 packages:
   base: !include packages/base.yaml
-  device: !include packages/devices/shelly-duo.yaml
+  device: !include packages/devices/kauf-blf15.yaml
   component: !include
-    file: packages/components/cwww-light.yaml
+    file: packages/components/rgbww-light.yaml
     vars:
+      red: red
+      green: green
+      blue: blue
       cold_white: cold_white
       warm_white: warm_white
 ...
