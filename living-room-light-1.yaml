@@ -1,0 +1,15 @@
+---
+substitutions:
+  friendly_name: Living Room Light 1
+  name: living-room-light-1
+  ip: '10.0.1.217'
+
+packages:
+  base: !include packages/base.yaml
+  device: !include packages/devices/shelly-duo.yaml
+  component: !include
+    file: packages/components/cwww-light.yaml
+    vars:
+      cold_white: cold_white
+      warm_white: warm_white
+...
