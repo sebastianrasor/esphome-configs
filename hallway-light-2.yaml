@@ -2,7 +2,7 @@
 substitutions:
   friendly_name: Hallway Light 2
   name: hallway-light-2
-  ip: '10.0.1.62'
+  ip: '10.0.1.150'
 
 packages:
   base: !include packages/base.yaml
