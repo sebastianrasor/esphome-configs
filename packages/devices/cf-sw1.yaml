@@ -8,12 +8,12 @@ esp32:
 
 output:
   - platform: gpio
-    pin: GPIO12
+    pin: GPIO1
     id: relay0
 
 binary_sensor:
   - platform: gpio
-    pin: GPIO0
+    pin: GPIO3
     id: button0
     internal: true
 ...

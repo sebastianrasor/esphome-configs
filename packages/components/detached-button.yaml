@@ -1,4 +1,4 @@
-# Expects binary output `$output`, binary sensor `$switch`, and Home Assistant
+# Expects binary output `$relay`, binary sensor `$switch`, and Home Assistant
 # entity ID `$target`
 ---
 switch:
@@ -6,19 +6,15 @@ switch:
     internal: true
     restore_mode: ALWAYS_ON
     id: relay
-    output: $output
+    output: $relay
 
 binary_sensor:
   - platform: status
-    id: ha_status
     # Once the API has reconnected, the light needs to be powered.
     on_press:
       - switch.turn_on: relay
-    # Smart lights are set to recover ALWAYS_ON, so in order to avoid the relay
-    # being on but the light being off, we have to turn it off and on again.
+    # When API gets disconnected, the light needs to be powered.
     on_release:
-      - switch.turn_off: relay
-      - delay: 200ms
       - switch.turn_on: relay
 # This seems to be behavior which was *supposed* to work, however currently
 # it does not. Until this is fixed, we'll have to create a new binary sensor.
@@ -26,8 +22,8 @@ binary_sensor:
   - platform: template
     id: switch_replace_me_when_fixed
     internal: true
-    lambda: 'return id($switch).state;'
-    on_state:
+    lambda: 'return id($button).state;'
+    on_click:
       - if:
           condition:
             api.connected:

@@ -8,9 +8,9 @@ sensor:
     pin: $dht11_pin
     temperature:
       id: dht11_temperature
-      name: "${friendly_name} Temperature"
+      name: "Temperature"
     humidity:
       id: dht11_humidity
-      name: "${friendly_name} Humidity"
+      name: "Humidity"
     update_interval: 2s
 ...

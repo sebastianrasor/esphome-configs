@@ -5,5 +5,6 @@ fan:
     # Name is set in packages/base/esphome.yaml
     # https://esphome.io/components/esphome#esphome-configuration-variables
     name: None
+    id: binary_fan
     output: $output
 ...

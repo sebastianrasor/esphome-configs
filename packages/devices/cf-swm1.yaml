@@ -14,17 +14,21 @@ output:
 
 binary_sensor:
   - platform: gpio
-    pin: GPIO0
+    pin:
+      number: GPIO0
+      inverted: true
     id: button0
     internal: true
   - platform: gpio
-    pin: GPIO5
+    pin:
+      number: GPIO5
+      inverted: true
+    name: "Motion"
     id: motion0
     device_class: motion
-    internal: true
   - platform: gpio
     pin: GPIO14
+    name: "Lux"
     id: lux0
     device_class: light
-    internal: true
 ...

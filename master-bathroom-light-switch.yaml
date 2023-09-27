@@ -1,20 +1,20 @@
 ---
 substitutions:
-  friendly_name: Master Bathroom Light
-  name: master-bathroom-light
+  friendly_name: Master Bathroom Light Switch
+  name: master-bathroom-light-switch
   ip: '10.0.1.147'
 
 packages:
   base: !include packages/base.yaml
-  device: !include packages/devices/shelly-1.yaml
+  device: !include packages/devices/cf-swm1.yaml
   component0: !include
     file: packages/components/binary-light.yaml
     vars:
       output: relay0
   component1: !include
-    file: packages/components/switch-button.yaml
+    file: packages/components/on-click.yaml
     vars:
-      switch: switch0
+      button: button0
       action: light.toggle
       target: binary_light
 ...

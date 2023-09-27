@@ -1,0 +1,16 @@
+---
+substitutions:
+  friendly_name: Hallway Light Switch
+  name: hallway-light-switch
+  ip: '10.0.1.216'
+
+packages:
+  base: !include packages/base.yaml
+  device: !include packages/devices/cf-swm1.yaml
+  component1: !include
+    file: packages/components/detached-button.yaml
+    vars:
+      button: button0
+      relay: relay0
+      target: light.hallway
+...

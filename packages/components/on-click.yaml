@@ -1,13 +1,13 @@
-# Expects action `$action`, target `$target`,  and binary sensor `$switch`
+# Expects action `$action`, target `$target`,  and binary sensor `$button`
 ---
 binary_sensor:
 # This seems to be behavior which was *supposed* to work, however currently
 # it does not. Until this is fixed, we'll have to create a new binary sensor.
-# - id: !extend $switch
+# - id: !extend $button
   - platform: template
-    id: switch_replace_me_when_fixed
+    id: button_replace_me_when_fixed
     internal: true
-    lambda: 'return id($switch).state;'
-    on_state:
+    lambda: 'return id($button).state;'
+    on_click:
       - $action: $target
 ...
