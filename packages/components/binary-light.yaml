@@ -3,6 +3,7 @@
 ---
 binary_sensor:
   - platform: status
+    id: ha_status
     # When API gets disconnected, the light needs to be turned on.
     on_release:
       - light.turn_on: binary_light

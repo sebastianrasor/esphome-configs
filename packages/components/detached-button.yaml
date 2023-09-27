@@ -10,6 +10,7 @@ switch:
 
 binary_sensor:
   - platform: status
+    id: ha_status
     # Once the API has reconnected, the light needs to be powered.
     on_press:
       - switch.turn_on: relay
