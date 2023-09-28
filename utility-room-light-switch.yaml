@@ -1,8 +1,8 @@
 ---
 substitutions:
-  friendly_name: Hallway Light Switch
-  name: hallway-light-switch
-  ip: '10.0.1.216'
+  friendly_name: Utility Room Light Switch
+  name: utility-room-light-switch
+  ip: '10.0.1.40'
 
 packages:
   base: !include packages/base.yaml
