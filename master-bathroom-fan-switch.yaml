@@ -1,8 +1,8 @@
 ---
 substitutions:
-  friendly_name: Master Bathroom Fan
-  name: master-bathroom-fan
-  ip: '10.0.1.105'
+  friendly_name: Master Bathroom Fan Switch
+  name: master-bathroom-fan-switch
+  ip: '10.0.1.57'
 
 packages:
   base: !include packages/base.yaml

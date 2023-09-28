@@ -1,0 +1,21 @@
+---
+substitutions:
+  friendly_name: Dining Room Fan Switch
+  name: dining-room-fan-switch
+  ip: '10.0.1.99'
+
+packages:
+  base: !include packages/base.yaml
+  device: !include packages/devices/cf-sw1.yaml
+  component0: !include packages/components/proxy.yaml
+  component1: !include
+    file: packages/components/binary-fan.yaml
+    vars:
+      output: relay0
+  component2: !include
+    file: packages/components/on-click.yaml
+    vars:
+      button: button0
+      action: fan.toggle
+      target: binary_fan
+...

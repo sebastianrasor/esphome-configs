@@ -16,4 +16,10 @@ binary_sensor:
     pin: GPIO10
     id: switch0
     internal: true
+  - platform: gpio
+    pin:
+      number: GPIO1
+      inverted: true
+    id: button0
+    name: "Button"
 ...

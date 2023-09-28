@@ -3,8 +3,14 @@
 substitutions:
   device_name: CloudFree Switch
 
+esphome:
+  platformio_options:
+    board_build.flash_mode: dio
+
 esp32:
   board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
 
 output:
   - platform: gpio
@@ -13,7 +19,9 @@ output:
 
 binary_sensor:
   - platform: gpio
-    pin: GPIO3
+    pin:
+      number: GPIO3
+      inverted: true
     id: button0
     internal: true
 ...
