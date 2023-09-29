@@ -1,0 +1,17 @@
+---
+substitutions:
+  friendly_name: Master Bathroom Vanity Light Switch
+  name: master-bath-vanity-light-switch
+  ip: '10.0.1.179'
+
+packages:
+  base: !include packages/base.yaml
+  device: !include packages/devices/cf-sw1.yaml
+  component0: !include packages/components/proxy.yaml
+  component1: !include
+    file: packages/components/detached-button.yaml
+    vars:
+      button: button0
+      relay: relay0
+      target: light.master_bathroom_vanity
+...
