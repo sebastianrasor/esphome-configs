@@ -1,0 +1,13 @@
+# Expects binary sensor `$button` and Home Assistant entity ID `$target`
+---
+binary_sensor:
+  - platform: template
+    id: switch_replace_me_when_fixed
+    internal: true
+    lambda: 'return id($button).state;'
+    on_click:
+      - homeassistant.service:
+          service: light.toggle
+          data:
+            entity_id: $target
+...
