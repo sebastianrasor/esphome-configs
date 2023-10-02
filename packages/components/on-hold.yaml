@@ -1,0 +1,16 @@
+# Expects action `$action`, target `$target`,  and binary sensor `$button`
+---
+binary_sensor:
+# This seems to be behavior which was *supposed* to work, however currently
+# it does not. Until this is fixed, we'll have to create a new binary sensor.
+# - id: !extend $button
+  - platform: template
+    id: button_replace_me_when_fixed
+    internal: true
+    lambda: 'return id($button).state;'
+    on_click:
+      min_length: 350ms
+      max_length: 950ms
+      then:
+        - $action: $target
+...

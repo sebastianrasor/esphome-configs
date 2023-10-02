@@ -14,4 +14,11 @@ packages:
       button: button0
       relay: relay0
       target: light.front_porch
+  component2: !include packages/components/garage-door-button.yaml
+  component3: !include
+    file: packages/components/on-hold.yaml
+    vars:
+      button: button0
+      action: button.press
+      target: garage_door_button
 ...

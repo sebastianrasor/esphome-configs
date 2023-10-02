@@ -1,0 +1,6 @@
+---
+button:
+  - platform: restart
+    id: restart_button
+    internal: true
+...

@@ -1,0 +1,12 @@
+---
+button:
+  - platform: template
+    id: garage_door_button
+    internal: true
+    on_press:
+      then:
+        - homeassistant.service:
+            service: cover.toggle
+            data:
+              entity_id: cover.garage_door
+...
