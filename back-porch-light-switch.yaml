@@ -8,10 +8,18 @@ packages:
   base: !include packages/base.yaml
   device: !include packages/devices/cf-sw1.yaml
   component0: !include packages/components/proxy.yaml
-  component1: !include
+  component1: !include packages/components/restart-button.yaml
+  component2: !include
     file: packages/components/detached-button.yaml
     vars:
       button: button0
       relay: relay0
       target: light.back_porch
+  component3: !include
+    file: packages/components/on-long-hold.yaml
+    vars:
+      button: button0
+      action: button.press
+      target: restart_button
+
 ...

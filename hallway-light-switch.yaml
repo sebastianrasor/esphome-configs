@@ -7,11 +7,18 @@ substitutions:
 packages:
   base: !include packages/base.yaml
   device: !include packages/devices/cf-swm1.yaml
-  component0: !include
+  component0: !include packages/components/restart-button.yaml
+  component1: !include
     file: packages/components/binary-light.yaml
     vars:
       output: relay0
-  component1: !include
+  component2: !include
+    file: packages/components/on-long-hold.yaml
+    vars:
+      button: button0
+      action: button.press
+      target: restart_button
+  component3: !include
     file: packages/components/on-click.yaml
     vars:
       button: button0
