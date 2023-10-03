@@ -49,6 +49,14 @@ sensor:
         return id(dht11_temperature).state;
       }
 
+esphome:
+  on_boot:
+    priority: -100.0
+    then:
+      - climate.control:
+          id: thermo
+          fan_mode: AUTO
+
 climate:
   - platform: thermostat
     # Name is set in packages/base/esphome.yaml
@@ -111,17 +119,13 @@ climate:
       - name: Home
         default_target_temperature_low: 68 °F
         default_target_temperature_high: 72 °F
-        fan_mode: AUTO
       - name: Sleep
         default_target_temperature_low: 63 °F
         default_target_temperature_high: 67 °F
-        fan_mode: AUTO
       - name: Away
         default_target_temperature_low: 65 °F
         default_target_temperature_high: 75 °F
-        fan_mode: AUTO
       - name: Vacation
         default_target_temperature_low: 55 °F
         default_target_temperature_high: 85 °F
-        fan_mode: AUTO
 ...
