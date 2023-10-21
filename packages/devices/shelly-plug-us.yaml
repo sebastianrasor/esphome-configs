@@ -1,0 +1,56 @@
+# Provides binary output `relay0` and binary sensor `switch0`
+---
+substitutions:
+  device_name: Shelly Plug US
+
+esp8266:
+  board: esp8285
+
+output:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      inverted: True
+    id: led0
+  - platform: gpio
+    pin:
+      number: GPIO2
+      inverted: True
+    id: led1
+  - platform: gpio
+    pin: GPIO4
+    id: relay0
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO13
+      inverted: True
+    id: button0
+
+sensor:
+  - platform: hlw8012
+    sel_pin:
+      number: GPIO12
+      inverted: true
+    cf_pin: GPIO5
+    cf1_pin: GPIO14
+    current_resistor: 0.00290
+    voltage_divider: 940
+    current:
+      name: "${relay_name} current"
+    voltage:
+      name: "${relay_name} voltage"
+    power:
+      name: "${relay_name} power"
+      id: power
+      unit_of_measurement: "W"
+      icon: mdi:flash-outline
+      # filters:
+      # # This calibrations we generated with a 40W and 100W incandescent light bulb
+      # - calibrate_linear:
+      #   - 0 -> 0
+      #   - 206.9 -> 40
+      #   - 540 -> 100
+    update_interval: 5s
+...

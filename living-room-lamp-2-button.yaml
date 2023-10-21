@@ -1,23 +1,23 @@
 ---
 substitutions:
-  friendly_name: Hallway Light Switch
-  name: hallway-light-switch
-  ip: '10.0.1.216'
+  friendly_name: Living Room Lamp 2 Button
+  name: living-room-lamp-2-button
+  ip: '10.0.1.104'
 
 packages:
   base: !include packages/base.yaml
-  device: !include packages/devices/cf-swm1.yaml
+  device: !include packages/devices/shelly-1.yaml
   component0: !include packages/components/restart-button.yaml
   component1: !include
     file: packages/components/detached-button.yaml
     vars:
-      button: button0
+      button: switch0
       relay: relay0
-      target: light.hallway
+      target: light.living_room_2
   component2: !include
     file: packages/components/on-long-hold.yaml
     vars:
-      button: button0
+      button: switch0
       action: button.press
       target: restart_button
 ...

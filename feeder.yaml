@@ -7,8 +7,14 @@ substitutions:
 packages:
   base: !include packages/base.yaml
   device: !include packages/devices/shelly-1.yaml
-  component: !include
+  component0: !include
     file: packages/components/feeder.yaml
     vars:
       output: relay0
+  component1: !include
+    file: packages/components/on-click.yaml
+    vars:
+      button: switch0
+      action: button.press
+      target: internal_button
 ...

@@ -8,7 +8,7 @@ button:
     id: feeder
     icon: "mdi:paw"
     output: $output
-    duration: 20s
+    duration: 18s
   - platform: template
     id: internal_button
     internal: true
@@ -35,23 +35,28 @@ time:
         then:
           - button.press: internal_button
       - seconds: 0
-        minutes: 30
+        minutes: 0
         hours: 9
         then:
           - button.press: internal_button
       - seconds: 0
         minutes: 30
-        hours: 12
+        hours: 11
+        then:
+          - button.press: internal_button
+      - seconds: 0
+        minutes: 0
+        hours: 14
         then:
           - button.press: internal_button
       - seconds: 0
         minutes: 30
-        hours: 15
+        hours: 16
         then:
           - button.press: internal_button
       - seconds: 0
-        minutes: 30
-        hours: 18
+        minutes: 0
+        hours: 19
         then:
           - button.press: internal_button
       - seconds: 0
