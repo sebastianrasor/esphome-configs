@@ -1,13 +1,6 @@
 # Expects binary output `$output`
 # Provides binary light `binary_light`
 ---
-binary_sensor:
-  - platform: status
-    id: ha_status
-    # When API gets disconnected, the light needs to be turned on.
-    on_release:
-      - light.turn_on: binary_light
-
 light:
   - platform: binary
     # Name is set in packages/base/esphome.yaml

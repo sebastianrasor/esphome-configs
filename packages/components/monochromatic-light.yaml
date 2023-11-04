@@ -1,0 +1,13 @@
+# Expects float output `$brightness`
+---
+light:
+  - platform: monochromatic
+    # Name is set in packages/base/esphome.yaml
+    # https://esphome.io/components/esphome#esphome-configuration-variables
+    name: None
+    id: monochromatic_light
+    output: $brightness
+    restore_mode: ALWAYS_ON
+    default_transition_length: 200ms
+    flash_transition_length: 200ms
+...

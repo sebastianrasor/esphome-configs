@@ -1,8 +1,8 @@
 ---
 substitutions:
-  friendly_name: Guest Bathroom Light 3
-  name: guest-bathroom-light-3
-  ip: '10.0.1.148'
+  friendly_name: Guest Bathroom Light
+  name: guest-bathroom-light
+  ip: '10.0.1.65'
 
 packages:
   base: !include packages/base.yaml

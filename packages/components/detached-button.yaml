@@ -3,20 +3,41 @@
 ---
 switch:
   - platform: output
-    internal: true
+    name: Relay
     restore_mode: ALWAYS_ON
     id: relay
     output: $relay
 
+globals:
+  - id: ha_connected
+    type: bool
+    restore_value: False
+    initial_value: 'false'
+
+api:
+  on_client_connected:
+    - if:
+        condition:
+          lambda: 'return strstr(client_info.c_str(), "Home Assistant") != NULL;'
+        then:
+          - switch.turn_on: relay
+          - globals.set:
+              id: ha_connected
+              value: 'true'
+  on_client_disconnected:
+    - if:
+        condition:
+          lambda: 'return strstr(client_info.c_str(), "Home Assistant") == NULL;'
+        then:
+          - globals.set:
+              id: ha_connected
+              value: 'false'
+
 binary_sensor:
-  - platform: status
-    id: ha_status
-    # Once the API has reconnected, the light needs to be powered.
-    on_press:
-      - switch.turn_on: relay
-    # When API gets disconnected, the light needs to be powered.
-    on_release:
-      - switch.turn_on: relay
+  - platform: homeassistant
+    id: light_is_on
+    internal: true
+    entity_id: $target
 # This seems to be behavior which was *supposed* to work, however currently
 # it does not. Until this is fixed, we'll have to create a new binary sensor.
 # - id: !extend $switch
@@ -27,12 +48,19 @@ binary_sensor:
     on_click:
       - if:
           condition:
-            api.connected:
+            lambda: 'return id(ha_connected);'
           then:
-            - homeassistant.service:
-                service: light.toggle
-                data:
-                  entity_id: $target
+            - homeassistant.event:
+                event: esphome.button_pressed
           else:
-            - switch.toggle: relay
+            - if:
+                condition:
+                  binary_sensor.is_on: light_is_on
+                then:
+                  switch.toggle: relay
+                else:
+                  - switch.turn_off: relay
+                  - delay: 1s
+                  - switch.turn_on: relay
+                  - lambda: 'id(light_is_on).publish_state(true);'
 ...

@@ -1,0 +1,15 @@
+---
+substitutions:
+  friendly_name: Guest Bathroom Vanity Light 1
+  name: guest-bathroom-vanity-light-1
+  ip: '10.0.1.180'
+
+packages:
+  base: !include packages/base.yaml
+  device: !include packages/devices/shelly-duo.yaml
+  component: !include
+    file: packages/components/cwww-light.yaml
+    vars:
+      cold_white: cold_white
+      warm_white: warm_white
+...
